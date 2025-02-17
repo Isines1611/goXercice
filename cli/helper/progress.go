@@ -32,11 +32,15 @@ func Initialize(workingPath string) bool {
 	hintsPath := filepath.Join(goxerciceDir, "hints.json")
 	exercicesContent := map[string][]string{
 		"exercices": {
-			"intro/1-intro.go",
-			"intro/2-intro.go",
-			"1-variables.go",
-			"2-functions.go",
-			"3-t.go",
+			"00-intro/1-intro.go",
+			"00-intro/2-intro.go",
+			"01-variable/1-variable.go",
+			"01-variable/2-variable.go",
+			"01-variable/3-variable.go",
+			"01-variable/4-variable.go",
+			"02-functions/1-functions.go",
+			"02-functions/2-functions.go",
+			"02-functions/3-functions.go",
 		},
 	}
 
@@ -86,7 +90,7 @@ func Initialize(workingPath string) bool {
 	}
 
 	// writing config
-	SaveConfig(Config{Next: 0, Hint: 0, Path: workingPath})
+	SaveConfig(Config{Next: 0, Hint: 0, Path: filepath.Join(workingPath, "files")})
 
 	return true
 }

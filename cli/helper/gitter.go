@@ -24,7 +24,7 @@ type GitHubFile struct {
 	Type        string `json:"type"`
 }
 
-const apiURL = ""
+const apiURL = "https://github.com/Isines1611/goXercice/tree/main/files"
 
 func DownloadFiles(dir string) {
 	parsedUrl, _ := url.Parse(apiURL)

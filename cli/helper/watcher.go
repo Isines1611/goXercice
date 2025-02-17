@@ -44,8 +44,6 @@ func startWatch(filepath string, doneChan chan bool) {
 						doneChan <- true
 						return
 					}
-
-					fmt.Println("try again")
 				}
 
 				lastModified = time.Now()
