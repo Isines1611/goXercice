@@ -14,20 +14,20 @@ import (
 func CLIMode() {
 	ClearScreen()
 	config := LoadConfig()
-	currExerciceName, _ := GetNextExercise()
+	currExerciceName, _ := GetNextExercise(-1)
 	currExercicePath := filepath.Join(config.Path, "exercices", currExerciceName)
 
-	fmt.Println(currExercicePath)
 	fmt.Println("\n🎯 GoXercice CLI Mode")
 
 	doneChan := make(chan bool)
+	nextChan := make(chan bool)
 
-	go startWatch(currExercicePath, doneChan)
+	go startWatch(currExercicePath, doneChan, nextChan)
 
 	reader := bufio.NewReader(os.Stdin)
 
 	for {
-		currExerciceName, _ := GetNextExercise()
+		currExerciceName, _ := GetNextExercise(-1)
 		currExercicePath := filepath.Join(config.Path, "exercices", currExerciceName)
 
 		fmt.Println("📌 Current Exercise:", currExerciceName)
@@ -41,7 +41,7 @@ func CLIMode() {
 				ClearScreen()
 
 				if next := CheckForNext(); next != "" {
-					go startWatch(next, doneChan) // watch the new file
+					go startWatch(next, doneChan, nextChan) // watch the new file
 				}
 			}
 		case "verify":
@@ -49,7 +49,7 @@ func CLIMode() {
 				ClearScreen()
 
 				if next := CheckForNext(); next != "" {
-					go startWatch(next, doneChan) // watch the new file
+					go startWatch(next, doneChan, nextChan) // watch the new file
 				}
 			}
 		case "n":
@@ -83,9 +83,9 @@ func CLIMode() {
 		}
 
 		select {
-		case <-doneChan:
+		case <-nextChan:
 			if next := CheckForNext(); next != "" {
-				go startWatch(next, doneChan) // watch the new file
+				go startWatch(next, nextChan, nextChan) // watch the new file
 			} else {
 				return
 			}
@@ -97,9 +97,7 @@ func CLIMode() {
 
 func CheckForNext() string {
 	config := LoadConfig()
-	currExerciceName, _ := GetNextExercise()
-
-	fmt.Println(countExercices())
+	currExerciceName, _ := GetNextExercise(-1)
 
 	if config.Next == countExercices() {
 		fmt.Println("🎉 All exercices completed!")

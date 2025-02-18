@@ -13,6 +13,10 @@ type Config struct {
 	Path string `json:"path"`
 }
 
+type Exercises struct {
+	Exercises []string `json:"exercices"`
+}
+
 func Initialize(workingPath string) bool {
 	// Create directory
 	homeDir, err := os.UserHomeDir()
@@ -341,60 +345,59 @@ func GetHint() (string, error) {
 
 	hintsPath := filepath.Join(homeDir, ".goxercice", "hints.json")
 	config := LoadConfig()
+	exerciceName, _ := GetNextExercise(config.Next)
 
-	hintsFile, err := os.Open(hintsPath)
+	data, err := os.ReadFile(hintsPath)
 	if err != nil {
-		return "", err
-	}
-	defer hintsFile.Close()
-
-	var hintsData map[string][]string
-	decoder := json.NewDecoder(hintsFile)
-	err = decoder.Decode(&hintsData)
-	if err != nil {
-		fmt.Println("❌ Error: Unable read hints data:", err)
-		return "", err
+		fmt.Println("err reading", err)
 	}
 
-	var fileName string
-	var counter int
-	for key := range hintsData {
-		if counter == config.Next {
-			fileName = key
-			break
+	var allHints map[string][]string
+	if err := json.Unmarshal(data, &allHints); err != nil {
+		fmt.Println("err unma", err)
+	}
+
+	hintList, exists := allHints["quiz/1-quiz.go"]
+	if !exists {
+		return "❌ No hints found for this exercise.", nil
+	}
+	if 0 >= len(hintList) {
+		return "❌ No more hints available.", nil
+	}
+
+	if exoHints, ok := allHints[exerciceName]; ok {
+		if config.Hint < 0 {
+			return "", fmt.Errorf("negative hint")
 		}
-		counter++
-	}
 
-	// Check if the file exists and retrieve the hint at counter
-	if fileHints, exists := hintsData[fileName]; exists {
-		if config.Hint >= 0 && config.Hint < len(fileHints) {
-			hints := fileHints[:config.Hint+1]
-
-			var text string
-			for i, v := range hints {
-				text += fmt.Sprintf("%d/%d - %s\n", i+1, len(fileHints), v)
-			}
-
-			config.Hint++
-			SaveConfig(config)
-
-			return text, nil
+		var hints []string
+		if config.Hint >= len(exoHints) {
+			hints = exoHints[:]
 		} else {
-			var text string
-			for i, v := range fileHints {
-				text += fmt.Sprintf("%d/%d - %s\n", i+1, len(fileHints), v)
-			}
-
-			return text, nil
+			hints = exoHints[:config.Hint+1]
 		}
-	}
-	return "", fmt.Errorf("file not found")
 
+		var textHint string
+
+		for i, hint := range hints {
+			textHint += fmt.Sprintf("%d/%d - %s\n", i+1, len(exoHints), hint)
+		}
+
+		if config.Hint >= len(exoHints) {
+			return textHint, nil
+		}
+
+		config.Hint++
+		SaveConfig(config)
+
+		return textHint, nil
+	}
+
+	return "", fmt.Errorf("file not found")
 }
 
 // GetNextExercise gets the next exercise from exercices.json
-func GetNextExercise() (string, error) {
+func GetNextExercise(index int) (string, error) {
 	homeDir, err := os.UserHomeDir()
 	if err != nil {
 		fmt.Println("❌ Error: Unable to get home directory:", err)
@@ -404,24 +407,27 @@ func GetNextExercise() (string, error) {
 	exercicePath := filepath.Join(homeDir, ".goxercice", "exercices.json")
 	config := LoadConfig()
 
-	exerciceFile, err := os.Open(exercicePath)
+	dataF, err := os.ReadFile(exercicePath)
 	if err != nil {
 		return "", err
 	}
-	defer exerciceFile.Close()
 
-	var data struct {
-		Exercices []string `json:"exercices"`
+	var ex Exercises
+	if err := json.Unmarshal(dataF, &ex); err != nil {
+		return "", err
 	}
 
-	decoder := json.NewDecoder(exerciceFile)
-	if err := decoder.Decode(&data); err != nil {
-		return "err", err
+	if index < 0 {
+		if config.Next < 0 || config.Next >= len(ex.Exercises) {
+			return "index out of range", fmt.Errorf("index out of range")
+		}
+
+		return ex.Exercises[config.Next], nil
 	}
 
-	if config.Next < 0 || config.Next >= len(data.Exercices) {
+	if index < 0 || index >= len(ex.Exercises) {
 		return "index out of range", fmt.Errorf("index out of range")
 	}
 
-	return data.Exercices[config.Next], nil
+	return ex.Exercises[index], nil
 }

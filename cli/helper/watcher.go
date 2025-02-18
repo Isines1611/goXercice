@@ -7,7 +7,7 @@ import (
 	"github.com/fsnotify/fsnotify"
 )
 
-func startWatch(filepath string, doneChan chan bool) {
+func startWatch(filepath string, doneChan, nextChan chan bool) {
 	// Create new watcher.
 	watcher, err := fsnotify.NewWatcher()
 	if err != nil {
@@ -41,7 +41,7 @@ func startWatch(filepath string, doneChan chan bool) {
 					if CorrectExercice(filepath, true, true) {
 						fmt.Println("▶️ Enter 'n' or 'next' to contine...")
 						doneChan <- true
-						doneChan <- true
+						nextChan <- true
 						return
 					}
 				}

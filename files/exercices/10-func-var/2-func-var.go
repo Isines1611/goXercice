@@ -8,7 +8,7 @@ func counter() ...
 func main() {
 	count := counter()
 
-	fmt.Println(counter())
-	fmt.Println(counter())
-	fmt.Println(counter())
+	fmt.Println(count())
+	fmt.Println(count())
+	fmt.Println(count())
 }

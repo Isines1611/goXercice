@@ -4,7 +4,7 @@ import "fmt"
 
 func main() {
 
-	var matrix [][]int
+	var matrix [][]int // You can modify this line
 
 	// TODO: modify 'matrix' to be:
 	// [0][1][0]

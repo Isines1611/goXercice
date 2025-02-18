@@ -12,7 +12,7 @@ var VerifyCmd = &cobra.Command{
 	Short: "Verify the pending exercice",
 	Run: func(cmd *cobra.Command, args []string) {
 		config := helper.LoadConfig()
-		currExerciceName, _ := helper.GetNextExercise()
+		currExerciceName, _ := helper.GetNextExercise(-1)
 		currExercicePath := filepath.Join(config.Path, "exercices", currExerciceName)
 
 		helper.CorrectExercice(currExercicePath, true, true)
