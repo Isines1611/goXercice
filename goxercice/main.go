@@ -20,7 +20,7 @@ var rootCmd = &cobra.Command{
 
 func main() {
 	// Register subcommands
-	rootCmd.AddCommand(cmd.InitCmd, cmd.VerifyCmd, cmd.VerifyAllCmd, cmd.HintCmd, cmd.ResetCmd, cmd.ResumeCmd)
+	rootCmd.AddCommand(cmd.InitCmd, cmd.VerifyCmd, cmd.VerifyAllCmd, cmd.HintCmd, cmd.ResetCmd, cmd.ResumeCmd, cmd.VersionCmd)
 
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Println("Error:", err)

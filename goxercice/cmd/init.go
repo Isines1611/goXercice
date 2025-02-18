@@ -9,9 +9,9 @@ import (
 )
 
 var InitCmd = &cobra.Command{
-	Use:   "init [path]",
+	Use:   "init [absolute path]",
 	Short: "Initialize goxercice and download exercises",
-	Long:  `Sets up goxercice in the user's home directory and downloads exercises. If a path is provided, exercises will be stored there. Otherwise, they are stored in the current directory.`,
+	Long:  `Sets up goxercice in the user's home directory and downloads exercises. If an absolute path is provided, exercises will be stored there. Otherwise, they are stored in the current directory.`,
 	Args:  cobra.MaximumNArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("📂 Initializing goxercice...")
