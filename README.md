@@ -119,4 +119,9 @@ goxercice reset
 This removes all config files. 
 You can then delete the directory with the exercices and solutions.
 
+If you installed goXercice via `go install`, then you need to remove the binary file in your `$GOPATH/bin` directory.
+You can verify it is deleted by running `goxercice`. The output should be `command not found: goxercice`. 
+
+If you installed goXercice manually, then delete all the files used to build the tool.
+
 ##### Version 1.0
