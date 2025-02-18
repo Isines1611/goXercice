@@ -3,7 +3,7 @@
 Greetings and welcome to goXercice. 
 This is a small project that contains small exercices to introduce you to the Go programming language.
 
-I recommend you to read a look at the example from [A tour of Go](https://go.dev/tour/welcome/1).
+I recommend you to take a look at the examples from [A tour of Go](https://go.dev/tour/welcome/1).
 This was a great inspiration for this project, and some exercices are taken from the site. 
 
 ## Getting Started
