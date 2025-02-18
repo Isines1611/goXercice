@@ -1,9 +1,9 @@
 package cmd
 
 import (
-	"goxercice/helper"
 	"path/filepath"
 
+	"github.com/Isines1611/goXercice/goxercice/helper"
 	"github.com/spf13/cobra"
 )
 

@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"goxercice/cmd"
 	"os"
 
+	"github.com/Isines1611/goXercice/goxercice/cmd"
 	"github.com/spf13/cobra"
 )
 

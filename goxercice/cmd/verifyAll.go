@@ -3,10 +3,10 @@ package cmd
 import (
 	"encoding/json"
 	"fmt"
-	"goxercice/helper"
 	"os"
 	"path/filepath"
 
+	"github.com/Isines1611/goXercice/goxercice/helper"
 	"github.com/spf13/cobra"
 )
 

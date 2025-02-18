@@ -2,9 +2,9 @@ package cmd
 
 import (
 	"fmt"
-	"goxercice/helper"
 	"os"
 
+	"github.com/Isines1611/goXercice/goxercice/helper"
 	"github.com/spf13/cobra"
 )
 

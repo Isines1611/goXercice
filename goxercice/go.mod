@@ -1,4 +1,4 @@
-module goxercice
+module github.com/Isines1611/goXercice/goxercice
 
 go 1.24.0
 
