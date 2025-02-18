@@ -1,11 +1,7 @@
 package main
 
-import "fmt"
-
+// TODO: define the emplyee struct
 type employee struct {
-	name     string
-	taskDone int
-	score    float64
 }
 
 func main() {
@@ -18,24 +14,16 @@ func main() {
 	trackPerformance(employees)
 }
 
-func trackPerformance(employees map[string]*employee) {
-	evaluator := getPerformanceEvaluator()
-
-	for _, emp := range employees {
-		emp.score = evaluator(emp.taskDone)
-		fmt.Printf("Employee: %s, Tasks Completed: %d, Performance Score: %.1f\n", emp.name, emp.taskDone, emp.score)
-	}
+func getPerformanceEvaluator() func(int) float64 {
+	// Implement the function closure for performance evaluation
+	// - If 5 or less tasks were done, then it's a score of 2
+	// - If 6 to 10 tasks were done, then it's a score of 3.5
+	// - otherwise, it's a score of 5
 }
 
-func getPerformanceEvaluator() func(int) float64 {
-	return func(tasks int) float64 {
-		switch {
-		case tasks <= 5:
-			return 2.0
-		case tasks <= 10:
-			return 3.5
-		default:
-			return 5.0
-		}
-	}
+func trackPerformance(employees map[string]*employee) {
+	// Implement trackPerformance method (using pointer receiver)
+	// It should use the 'getPerformanceEvaluator' to get the score and then print it:
+	// using the format: "Employee: NAME, Tasks Completed: TASK, Performance Score: SCORE\n", only print 1 decimal of the score
+
 }

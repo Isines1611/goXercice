@@ -23,8 +23,14 @@ func calculatePrice(apple, fidelity int) int {
 
 	switch fidelity {
 	case 1:
+		if apple-1 < 0 {
+			return 0
+		}
 		return (apple - 1) * 2
 	case 2:
+		if apple-5 < 0 {
+			return 0
+		}
 		return (apple - 5) * 2
 	case 3:
 		return apple

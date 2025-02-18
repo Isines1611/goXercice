@@ -41,17 +41,191 @@ func Initialize(workingPath string) bool {
 			"02-functions/1-functions.go",
 			"02-functions/2-functions.go",
 			"02-functions/3-functions.go",
+			"03-if/1-if.go",
+			"03-if/2-if.go",
+			"03-if/3-switch.go",
+			"quiz/1-quiz.go",
+			"04-for/1-for.go",
+			"04-for/2-for.go",
+			"04-for/3-for.go",
+			"05-defer/1-defer.go",
+			"06-pointers/1-pointers.go",
+			"06-pointers/2-pointers.go",
+			"07-struct/1-struct.go",
+			"07-struct/2-struct.go",
+			"08-arrays/1-arrays.go",
+			"08-arrays/2-arrays.go",
+			"08-arrays/3-arrays.go",
+			"09-map/1-map.go",
+			"09-map/2-map.go",
+			"09-map/3-map.go",
+			"10-func-var/1-func-var.go",
+			"10-func-var/2-func-var.go",
+			"quiz/2-quiz.go",
+			"11-method/1-method.go",
+			"11-method/2-method.go",
+			"12-interface/1-interface.go",
+			"12-interface/2-interface.go",
+			"12-interface/3-interface.go",
+			"13-generics/1-generics.go",
+			"13-generics/2-generics.go",
+			"14-goroutine/1-goroutine.go",
+			"15-channels/1-channels.go",
+			"15-channels/2-channels.go",
+			"15-channels/3-channels.go",
+			"16-mutex/1-mutex.go",
+			"16-mutex/1-mutex.go",
+			"quiz/3-quiz.go",
 		},
 	}
 
 	hintsContent := map[string][]string{
-		"001-variables.go": {
-			"Hint 1: Variables in Go use 'var' or ':='.",
-			"Hint 2: The type can be inferred automatically.",
+		"00-intro/1-intro.go": {
+			"Hint 1: Nothing to say",
 		},
-		"002-functions.go": {
-			"Hint 1: Functions in Go start with 'func'.",
-			"Hint 2: Functions need a return type if they return a value.",
+		"00-intro/2-intro.go": {
+			"Hint 1: Check out the capital letter",
+		},
+		"01-variable/1-variable.go": {
+			"Hint 1: 'var' is used for classic declaration",
+			"Hint2: ':=' is used for short declaration",
+		},
+		"01-variable/2-variable.go": {
+			"Hint 1: Declare all in the same line",
+		},
+		"01-variable/3-variable.go": {
+			"Hint 1: Use 'T(x)' to convert 'x' to type 'T'",
+		},
+		"01-variable/4-variable.go": {
+			"Hint 1: 'const' cannot use short declaration",
+		},
+		"02-functions/1-functions.go": {
+			"Hint 1: 'call_me()' is used to call a function",
+		},
+		"02-functions/2-functions.go": {
+			"Hint 1: Check how to write a function, where to set each information",
+			"Hint 2: It should look like: 'func say_hello() {}'",
+		},
+		"02-functions/3-functions.go": {
+			"Hint 1: You can return a computation using 'return'",
+		},
+		"03-if/1-if.go": {
+			"Hint 1: Check the README.md for links",
+		},
+		"03-if/2-if.go": {
+			"Hint 1: Check the README.md for links",
+			"Hint 2: You can write '-x' to instead of 'x * -1'",
+		},
+		"03-if/3-switch.go": {
+			"Hint 1: Check the README.md for links",
+			"Hint 2: Do not set anything after the switch: 'switch {}'",
+		},
+		"quiz/1-quiz.go": {
+			"Hint 1: Here you can switch over 'fidelity': 'switch fidelity {}'",
+			"Hint 2: Each 'case' can check for a number",
+		},
+		"04-for/1-for.go": {
+			"Hint 1: 'for' has 3 parts: initialization, condition, end statement",
+			"Hint 2: Check the README.md for links",
+		},
+		"04-for/2-for.go": {
+			"Hint 1: Check the README.md for links",
+		},
+		"04-for/3-for.go": {
+			"Hint 1: Check the README.md for links",
+		},
+		"05-defer/1-defer.go": {
+			"Hint 1: 'defer' are push on the stack",
+			"Hint 2: This means it should be done in a back order",
+		},
+		"06-pointers/1-pointers.go": {
+			"Hint 1: '&' gives the memory address of a variable",
+		},
+		"06-pointers/2-pointers.go": {
+			"Hint 1: Use several '*' to get to the value",
+		},
+		"07-struct/1-struct.go": {
+			"Hint 1: Define all variables as int",
+			"Hint 2: use brackets '{}' to declare them",
+		},
+		"07-struct/2-struct.go": {
+			"Hint 1: use dot '.' to access fields",
+		},
+		"08-arrays/1-arrays.go": {
+			"Hint 1: Use brackets '{}' to declare an array",
+			"Hint 2: This way: 'a := []int{1, 1, 1}'",
+			"Hint 3: Use range to loop over an array",
+		},
+		"08-arrays/2-arrays.go": {
+			"Hint 1: Check the README.md for links about slices",
+		},
+		"08-arrays/3-arrays.go": {
+			"Hint 1: Use 'make' to easly initialize the array",
+			"Hint 2: Elements in matrix are arrays too",
+		},
+		"09-map/1-map.go": {
+			"Hint 1: Check the README.md for links",
+		},
+		"09-map/2-map.go": {
+			"Hint 1: Use 'delete' to delete from a map",
+		},
+		"09-map/3-map.go": {
+			"Hint 1: Use 'strings.Fields(s)'",
+			"Hint 2: You can loop over the returned value using 'range'",
+		},
+		"10-func-var/1-func-var.go": {
+			"Hint 1: Check the README.md for links",
+		},
+		"10-func-var/2-func-var.go": {
+			"Hint 1: Check the README.md for links",
+		},
+		"quiz/2-quiz.go": {
+			"Hint 1: This exercices uses struct, function variables, switch and loops. You can check the README.md of those chapters",
+		},
+		"11-method/1-method.go": {
+			"Hint 1: Check the README.md for links",
+		},
+		"11-method/2-method.go": {
+			"Hint 1: Remember the type conversion",
+		},
+		"12-interface/1-interface.go": {
+			"Hint 1: Check the README.md for links",
+		},
+		"12-interface/2-interface.go": {
+			"Hint 1: Check the README.md for links",
+		},
+		"12-interface/3-interface.go": {
+			"Hint 1: Check the README.md for links",
+			"Hint 2: When returning an int and error, use the zero value: 'return 0, DivideZero{}'",
+		},
+		"13-generics/1-generics.go": {
+			"Hint 1: Check the README.md for links",
+		},
+		"13-generics/2-generics.go": {
+			"Hint 1: This exercice is classified as harder, you can check the solution if you're really stuck.",
+		},
+		"14-goroutine/1-goroutine.go": {
+			"Hint 1: Use the keyword 'go' to start a goroutine",
+		},
+		"15-channels/1-channels.go": {
+			"Hint 1: Check the README.md for links",
+		},
+		"15-channels/2-channels.go": {
+			"Hint 1: Check the README.md for links",
+		},
+		"15-channels/3-channels.go": {
+			"Hint 1: Check the README.md for links",
+		},
+		"16-mutex/1-mutex.go": {
+			"Hint 1: Check the README.md for links",
+			"Hint 2: Remember to unlock the mutex at the end or use 'defer'",
+		},
+		"16-mutex/2-mutex.go": {
+			"Hint 1: Check the README.md for links",
+			"Hint 2: Remember to unlock the mutex at the end or use 'defer'",
+		},
+		"quiz/3-quiz.go": {
+			"Use all you've learn and Gook Luck!",
 		},
 	}
 

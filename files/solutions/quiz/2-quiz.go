@@ -18,15 +18,6 @@ func main() {
 	trackPerformance(employees)
 }
 
-func trackPerformance(employees map[string]*employee) {
-	evaluator := getPerformanceEvaluator()
-
-	for _, emp := range employees {
-		emp.score = evaluator(emp.taskDone)
-		fmt.Printf("Employee: %s, Tasks Completed: %d, Performance Score: %.1f\n", emp.name, emp.taskDone, emp.score)
-	}
-}
-
 func getPerformanceEvaluator() func(int) float64 {
 	return func(tasks int) float64 {
 		switch {
@@ -37,5 +28,14 @@ func getPerformanceEvaluator() func(int) float64 {
 		default:
 			return 5.0
 		}
+	}
+}
+
+func trackPerformance(employees map[string]*employee) {
+	evaluator := getPerformanceEvaluator()
+
+	for _, emp := range employees {
+		emp.score = evaluator(emp.taskDone)
+		fmt.Printf("Employee: %s, Tasks Completed: %d, Performance Score: %.1f\n", emp.name, emp.taskDone, emp.score)
 	}
 }

@@ -1,79 +1,27 @@
 package main
 
 import (
-	"errors"
 	"fmt"
 )
 
-var errFund = errors.New("Error funds.")
+// TODO: We want to create a simple banking system
+// Each account has a name, balance and a transaction history and can deposit, withdraw and transfer money.
+// For the whole exercice, when asked to print balance, only print 2 decimals (example: 2.15779 => 2.15)
+// What is asked is:
+// - Create the banking interface
+// - Create the account struct
+// - Create a function to create accounts
+//		->  you should print "Account create with: $INITIALE-BALANCE" if everything went well, otherwise nothing is printed
+// - Implemenent the 'deposit', 'withdraw' and 'transfer' such as:
+// 		* 'deposit': if negative amount, print: "Deposit should be greater than zero", otherwise add the amount and add this to the transaction: "Deposite of: $BALANCE"
+// 		* 'withdraw': if negative amount, print "Withdraw should be greater than zero",
+// 			if not enough money, return error: "Error funds", if all went well then add to the transaction: "Withdrew: $BALANCE"
+// 		* 'transfer': if not enough money, return error: "Error funds".
+// 			if all went well then add to the transaction to the corresponding accounts: "Transferred: $BALANCE to ACCOUNT-NAME", "Received: $BALANCE from ACCOUNT-NAME"
+// - Finally, implement 'printTransaction'. If no account is given then print "Unknown account type".
+// 		Otherwise, print the transactions as: "\nTransaction history for ACCOUNT-NAME:\n" and each transaction
 
-type bank interface {
-	deposit(amount float64)
-	withdraw(amount float64) error
-	transfer(to *account, amount float64) error
-}
-
-type account struct {
-	owner       string
-	balance     float64
-	transaction []string
-}
-
-func newAccount(owner string, initiale float64) *account {
-	return &account{
-		owner:       owner,
-		balance:     initiale,
-		transaction: []string{fmt.Sprintf("Account create with: $%.2f", initiale)},
-	}
-}
-
-func (a *account) deposit(amount float64) {
-	if amount <= 0 {
-		fmt.Println("Deposit should be greater than zero")
-		return
-	}
-
-	a.balance += amount
-	a.transaction = append(a.transaction, fmt.Sprintf("Deposite of: $%.2f", amount))
-}
-
-func (a *account) withdraw(amount float64) error {
-	if amount <= 0 {
-		fmt.Println("Withdraw should be greater than zero")
-		return errFund
-	}
-
-	if amount > a.balance {
-		return errFund
-	}
-
-	a.balance -= amount
-	a.transaction = append(a.transaction, fmt.Sprintf("Withdrew: $%.2f", amount))
-	return nil
-}
-
-func (a *account) transfer(to *account, amount float64) error {
-	err := a.withdraw(amount)
-	if err != nil {
-		return err
-	}
-
-	to.deposit(amount)
-	a.transaction = append(a.transaction, fmt.Sprintf("Transferred: $%.2f to %s", amount, to.owner))
-	to.transaction = append(to.transaction, fmt.Sprintf("Received: $%.2f from %s", amount, a.owner))
-	return nil
-}
-
-func printTransaction(a bank) {
-	if acc, ok := a.(*account); ok {
-		fmt.Printf("\nTransaction history for %s:\n", acc.owner)
-		for _, transaction := range acc.transaction {
-			fmt.Println(transaction)
-		}
-	} else {
-		fmt.Println("❌ Unknown account type")
-	}
-}
+// GOOD LUCK !
 
 func main() {
 	acc1 := newAccount("Alice", 1000)
