@@ -12,9 +12,46 @@ This was a great inspiration for this project and some exercices are taken from 
 
 Before installing goXercice, install the latest version of Go. Check out [https://go.dev/](https://go.dev/)
 
-### Installing Rustlings
+### Installing goXercice
 
-TODO
+#### Using Go
+
+Make sure Go is installed on your machine. You can check by running:
+```bash
+go version
+```
+
+Run the following command to install GoXercice:
+```bash
+go install github.com/Isines1611/goXercice/goxercice@latest
+```
+
+Verify that the installation was successful by running:
+```bash
+goxercice
+```
+
+If you have errors downloading or launching the app, it might come from your `PATH`. Please follow official instruction at [https://go.dev/doc/install](https://go.dev/doc/install)
+
+#### Manual Installation
+
+If you prefer to build the CLI manually, follow these steps:
+Clone the repository:
+```bash
+git clone https://github.com/Isines1611/goXercice.git
+```
+
+Change directory to the goxercice folder and build the CLI:
+```bash
+cd goXercice
+go build -o goxercice
+```
+
+Now you can run the CLI from that directory with:
+
+```bash
+./goxercice
+```
 
 ### Initialization
 
