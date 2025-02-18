@@ -31,7 +31,7 @@ Verify that the installation was successful by running:
 goxercice
 ```
 
-If you have errors downloading or launching the app, it might come from your `PATH`. Please follow official instruction at [https://go.dev/doc/install](https://go.dev/doc/install)
+If you have errors downloading or launching the app, it might come from your `PATH`. Please follow official instruction at [https://go.dev/doc/install](https://go.dev/doc/install) or try adding `export PATH=$PATH:$HOME/go/bin` to your `PATH`.
 
 #### Manual Installation
 
