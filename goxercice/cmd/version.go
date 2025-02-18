@@ -7,8 +7,8 @@ import (
 )
 
 var VersionCmd = &cobra.Command{
-	Use:   "hint",
-	Short: "Provides a hint for the next pending exercise",
+	Use:   "version",
+	Short: "Provides the current version",
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("goXercice Version 1.0")
 	},
