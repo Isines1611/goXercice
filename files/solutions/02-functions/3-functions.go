@@ -9,6 +9,5 @@ func main() {
 }
 
 func add(x, y int) int {
-	// TODO: add the body of this function to return the addition of x and y
-	return x + y
+	return x + y // Solution: it returns the addition of 'x' and 'y'
 }

@@ -5,8 +5,7 @@ import (
 )
 
 func main() {
-	// TODO: call the 'call_me' function
-	call_me()
+	call_me() // Solution: call the function with no parameters
 }
 
 func call_me() {

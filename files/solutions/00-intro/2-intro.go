@@ -5,7 +5,6 @@ import (
 	"math"
 )
 
-// TODO: print the number PI using the imported package 'math'
 func main() {
-	fmt.Println(math.Pi)
+	fmt.Println(math.Pi) // Solution: replace 'pi' with capital letter 'Pi'
 }

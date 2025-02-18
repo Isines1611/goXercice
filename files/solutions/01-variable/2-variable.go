@@ -3,8 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	// TODO: Fix this variable declaration to print "Hello Gophers"
-	var name string = "Gophers"
+	var name string = "Gophers" // Solution: use a single way to declare variable
 
 	fmt.Println("Hello,", name)
 }
